@@ -11,16 +11,16 @@ os.environ['LANGCHAIN_API_KEY'] = "LANGCHAIN_API_KEY"
 prompt = ChatPromptTemplate.from_messages(
     [
         ("system, You are a helpful assistant. Please response to the user queries"),
-        ('user', 'Question:{question}')
+        ("user", "Question:{question}")
     ]
 )
 
 st.title("LLM Using Ollama")
 input_text = st.text_input("search what you want")
 
-llm = Ollama(model = 'llama2')
-output_parser = StrOutputParser
-chain = prompt|llm|output_parser
+llm=Ollama(model="llama2")
+output_parser=StrOutputParser()
+chain=prompt|llm|output_parser
 
 if input_text:
     st.write(chain.invoke({"question":input_text}))
